@@ -15,13 +15,13 @@ const Registro = ({ navigation }) => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            await setDoc(doc(db, 'users', user.id), {
+            await setDoc(doc(db, 'users', user.uid), {
                 name,
                 bio
             });
 
             Alert.alert('Sucesso!', 'Usuário cadastrado com sucesso!', [
-                {text: 'OK', onPress: () => navigation.replace('Home') }
+                { text: 'OK', onPress: () => navigation.replace('Home') }
             ]);
         } catch (err) {
             Alert.alert('Erro', 'Não foi possível cadastrar. Tente novamente.');
@@ -30,11 +30,11 @@ const Registro = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text>cadastro</Text>
-            <TextInput style={styles.input} placeholder="Nome" value={name} onChange={setName} />
-            <TextInput style={styles.input} placeholder="Bio" value={bio} onChange={setBio} />
-            <TextInput style={styles.input} placeholder="Email" value={email} onChange={setEmail} />
-            <TextInput style={styles.input} placeholder="Senha" secureTextEntry value={password} onChange={setPassword} />
+            <Text>Cadastro</Text>
+            <TextInput style={styles.input} placeholder="Nome" value={name} onChangeText={setName} />
+            <TextInput style={styles.input} placeholder="Bio" value={bio} onChangeText={setBio} />
+            <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
+            <TextInput style={styles.input} placeholder="Senha" secureTextEntry value={password} onChangeText={setPassword} />
             <Button title="Cadastrar" onPress={handleRegister} />
         </View>
     );
