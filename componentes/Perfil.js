@@ -26,6 +26,7 @@ const Perfil = () => {
             }
             setLoading(false);
         };
+
         fetchUserData();
     }, []);
 
@@ -45,34 +46,34 @@ const Perfil = () => {
     };
     
     return (
-        <View style={StyleSheet.container}>
+        <View style={styles.container}>
             {loading ? (
                 <ActivityIndicator size="large" color="#0000ff" />
             ) : userData ? (
                 <>
-                <Text style={StyleSheet.title}>Perfil do Usuário</Text>
-                { isEditing ? (
+                <Text style={styles.title}>Perfil do Usuário</Text>
+                {isEditing ? (
                     <>
                     <TextInput
-                        style={StyleSheet.input}
+                        style={styles.input}
                         value={name}
                         onChangeText={setName}
                         placeholder="Nome"
                     />
                     <TextInput
-                        style={StyleSheet.input}
+                        style={styles.input}
                         value={bio}
                         onChangeText={setBio}
                         placeholder="Bio"
                     />
                     <Button title="Salvar" onPress={handleSave} />
-                    <Button title="Cancelar" onPress={() => setIdEditing(false)} color="#888" />
+                    <Button title="Cancelar" onPress={() => setIsEditing(false)} color="#888" />
                     </>
-                ): (
+                ) : (
                     <>
-                    <Text style={StyleSheet.info}>Nome: {userData.name}</Text>
-                    <Text style={StyleSheet.info}>Bio: {userData.bio}</Text>
-                    <Button title="Editar" onPress={() => setIdEditing(true)} />
+                    <Text style={styles.info}>Nome: {userData.name}</Text>
+                    <Text style={styles.info}>Bio: {userData.bio}</Text>
+                    <Button title="Editar" onPress={() => setIsEditing(true)} />
                     </>
                 )}
                 </>
@@ -96,8 +97,7 @@ const styles =StyleSheet.create({
         marginBottom: 10
     },
     info: {
-        fontSize: 24,
-        fontWeight: 'bold',
+        fontSize: 18,
         marginBottom: 5
     },
     input: {
